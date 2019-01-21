@@ -1,10 +1,4 @@
-#include "stdio.h"
-#include "stdlib.h"
-#include "sys/mman.h"
-
-// void       free(void *ptr);
-// void       *malloc(size_t size);
-// void       *realloc(void *ptr, size_t size);
+#include "malloc.h"
 
 
 // @TODO: Chaque zone doit pouvoir contenir au moins 100 allocations.
@@ -30,27 +24,8 @@
 // Total : 52698 octets
 
 
-typedef struct	s_memory_trace
-{
-	void*	beginning_of_memory;
-	void*	end_of_memory;
-
-}		t_memory_trace;
 
 
-// La fonction malloc() alloue “size” octets de mémoire et retourne un pointeur sur la mémoire allouée.
-
-void		*ft_malloc(size_t size)
-{
-	static t_memory_trace memory_data;
-
-	memory_data.beginning_of_memory = mmap(0, size + 1, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
-	memory_data.end_of_memory = memory_data.beginning_of_memory + size;
-	printf("[0][MEMORY_ADDRESS]::[BEGIN] %p\n", memory_data.beginning_of_memory);
-	printf("[1][MEMORY_ADDRESS]::[ END ] %p\n", memory_data.end_of_memory);
-
-	return memory_data.beginning_of_memory;
-}
 
 // La fonction free() libère l’allocation de la mémoire pointée par “ptr”. Si “ptr” vaut NULL, free() ne fait rien.
 // void       ft_free(void *ptr)
@@ -66,6 +41,7 @@ int 		main(int ac, char** av)
 	int iterator;
 	char *test_string;
 
+	ac = 0;
 
 	size_to_alloc = sizeof(char) * atoi(av[2]);
 	char_to_print = av[1][0];
@@ -78,7 +54,7 @@ int 		main(int ac, char** av)
 		iterator++;
 	}
 	test_string[iterator] = '\0';
-	// printf("%s", test_string);
+	printf("%s", test_string);
 
 	return(0);
 }
