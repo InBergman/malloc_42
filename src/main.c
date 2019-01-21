@@ -34,27 +34,36 @@
 // }
 
 
-int 		main(int ac, char** av)
+// int 		main(int ac, char** av)
+// {
+// 	int size_to_alloc;
+// 	char char_to_print;
+// 	int iterator;
+// 	char *test_string;
+
+// 	ac = 0;
+// 	size_to_alloc = sizeof(char) * atoi(av[2]);
+// 	char_to_print = av[1][0];
+// 	iterator = 0;
+// 	test_string = (char*)ft_malloc(size_to_alloc);
+
+// 	while(iterator < size_to_alloc)
+// 	{
+// 		test_string[iterator] = char_to_print;
+// 		iterator++;
+// 	}
+// 	test_string[iterator] = '\0';
+// 	printf("%s", test_string);
+
+// 	return(0);
+// }
+
+
+int main()
 {
-	int size_to_alloc;
-	char char_to_print;
-	int iterator;
-	char *test_string;
-
-	ac = 0;
-
-	size_to_alloc = sizeof(char) * atoi(av[2]);
-	char_to_print = av[1][0];
-	iterator = 0;
-	test_string = (char*)ft_malloc(size_to_alloc);
-
-	while(iterator < size_to_alloc)
-	{
-		test_string[iterator] = char_to_print;
-		iterator++;
-	}
-	test_string[iterator] = '\0';
-	printf("%s", test_string);
-
-	return(0);
+	void* gm;
+	gm = NULL;
+	
+	gm = ft_malloc(24);
+	printf("[3][MAIN] :: %lu\n", sizeof(gm));
 }

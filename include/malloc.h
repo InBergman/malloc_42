@@ -11,6 +11,8 @@ typedef struct	s_memory_trace
 {
 	void*	beginning_of_memory;
 	void*	end_of_memory;
+	size_t	block_number;
+	size_t	page_number;
 
 }		t_memory_trace;
 
