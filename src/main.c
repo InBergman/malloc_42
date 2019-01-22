@@ -61,9 +61,11 @@
 
 int main()
 {
-	void* gm;
-	gm = NULL;
-	
-	gm = ft_malloc(24);
-	printf("[3][MAIN] :: %lu\n", sizeof(gm));
+	// int size = 1;
+	void* gm1 = NULL;
+	// void* gm2 = NULL;
+
+	gm1 = ft_malloc(1);
+	// printf("[3][MAIN] :: %lu\n", size * sizeof(int));
+
 }
