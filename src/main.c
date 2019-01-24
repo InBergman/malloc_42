@@ -37,6 +37,8 @@
 int main()
 {
 	ft_malloc(24);
-	ft_malloc(24);
-	ft_malloc(24);
+	ft_malloc(72);
+	ft_malloc(34);
+	ft_malloc(34);
+	ft_malloc(34);
 }
