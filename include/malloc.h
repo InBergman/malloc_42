@@ -14,24 +14,30 @@
 #define MEMORY_PAGE_SIZE 120400
 
 
-typedef struct	s_memory_trace
+typedef struct						s_memory_page
 {
-	void*	beginning_of_memory;
-	void*	end_of_memory;
-	size_t	block_number;
-	size_t	page_number;
+	size_t							memory_left;
+	size_t 							page_is_full;  // 0:no 1:yes
+	void*							memory_addr;
+	t_memory_blocks*				blocks;
+	struct s_memory_page*			next;
 
-	size_t buck_num;  //number of data segment
-	size_t buck_size; //size of a data segment
-	void *page;
-	void *freeinfo;
-
-}		t_memory_trace;
+}									t_memory_page;
 
 
-void       ft_free(void *ptr);
-void       *ft_malloc(size_t size);
-void       *ft_realloc(void *ptr, size_t size);
+typedef struct						s_memory_blocks
+{
+	void*							beginning_of_memory;
 
+	size_t							is_free; // 1:no 0:yes
+	size_t 							block_size;
+	struct s_memory_blocks* 		next;
+
+}									t_memory_blocks;
+
+
+void								ft_free(void *ptr);
+void								*ft_malloc(size_t size);
+void								*ft_realloc(void *ptr, size_t size);
 
 #endif

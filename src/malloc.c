@@ -1,40 +1,51 @@
 #include "malloc.h"
 
 // La fonction malloc() alloue “size” octets de mémoire et retourne un pointeur sur la mémoire allouée.
+// @TODO: Checker si page est full avant de rechercher un block free.
+
 
 void		*ft_malloc(size_t size)
 {
-	static t_memory_trace memory_data;
-	// int full_memory_page_size = 118384;
-	// int full_memory_page_size = 120400;
+	static t_memory_page *memory_page;
+	t_memory_page *head_memory_page = NULL;
+	void* tmp = NULL;
 
-	// Si premier malloc:
-		// 1: Alors mmap une page.
-		// 2: Classifier la taille du l'allocation memoire.
-	// Sinon:
-		// Classifier la taille du l'allocation memoire.
-		// Si espace insufisant dans l'espace memoire reserver:
-			// 1: Allouer nouvel espace sur une nouvelle page.
-			// 2: retourner l'addresse de l'espace alloué.
-	
-	if (size <= TINY)
+	if (memory_page)
 	{
-		printf("TINY\n");
-	}
-	if (size > TINY && size <= SMALL)
-	{
-		printf("SMALL\n");
+		head_memory_page = memory_page;
+		if()
 	}
 	else
 	{
-		printf("LARGE\n");
+		memory_page 									= mmap(0, sizeof(t_memory_page*), PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+		memory_page->memory_addr 						= mmap(0, 120400, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+		memory_page->blocks 							= mmap(0, sizeof(t_memory_blocks*), PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+		memory_page->blocks->beginning_of_memory 		= memory_page->memory_addr;
+		memory_page->blocks->is_free					= 1;
+		memory_page->blocks->block_size					= size;
+		head_memory_page 								= memory_page;
 	}
-	//@TODO: a ajouter ?  | MAP_FIXED
 
-	memory_data.beginning_of_memory = mmap(0, size + 1, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
-	// memory_data.end_of_memory = memory_data.beginning_of_memory + size;
-	// printf("[0][MEMORY_ADDRESS]::[BEGIN] %p\n", memory_data.beginning_of_memory);
-	// printf("[1][MEMORY_ADDRESS]::[ END ] %p\n", memory_data.end_of_memory);
+	if(head_memory_page != NULL)
+		memory_page = head_memory_page;
 
-	return memory_data.beginning_of_memory;
+	return tmp;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// memory_page->next = mmap(0, sizeof(t_memory_page*), PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+	// printf("[4][MEMORY_ADDRESS] %zu\n", ++(memory_page->page_is_full));
+	// printf("[5][MEMORY_ADDRESS] %zu\n", ++(memory_page->memory_left));
