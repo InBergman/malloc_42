@@ -14,6 +14,18 @@
 #define MEMORY_PAGE_SIZE 120400
 
 
+
+typedef struct						s_memory_blocks
+{
+	void*							beginning_of_memory;
+	size_t							is_free; // 1:no 0:yes
+	size_t							type; // 0:none 1:TINY 2:SMALL 3:LARGE
+	size_t 							block_size;
+	struct s_memory_blocks* 		next;
+
+}									t_memory_blocks;
+
+
 typedef struct						s_memory_page
 {
 	size_t							memory_left;
@@ -24,16 +36,6 @@ typedef struct						s_memory_page
 
 }									t_memory_page;
 
-
-typedef struct						s_memory_blocks
-{
-	void*							beginning_of_memory;
-
-	size_t							is_free; // 1:no 0:yes
-	size_t 							block_size;
-	struct s_memory_blocks* 		next;
-
-}									t_memory_blocks;
 
 
 void								ft_free(void *ptr);

@@ -28,43 +28,15 @@
 
 
 // La fonction free() libère l’allocation de la mémoire pointée par “ptr”. Si “ptr” vaut NULL, free() ne fait rien.
+
 // void       ft_free(void *ptr)
 // {
 	// munmap();
 // }
 
-
-// int 		main(int ac, char** av)
-// {
-// 	int size_to_alloc;
-// 	char char_to_print;
-// 	int iterator;
-// 	char *test_string;
-
-// 	ac = 0;
-// 	size_to_alloc = sizeof(char) * atoi(av[2]);
-// 	char_to_print = av[1][0];
-// 	iterator = 0;
-// 	test_string = (char*)ft_malloc(size_to_alloc);
-
-// 	while(iterator < size_to_alloc)
-// 	{
-// 		test_string[iterator] = char_to_print;
-// 		iterator++;
-// 	}
-// 	test_string[iterator] = '\0';
-// 	printf("%s", test_string);
-
-// 	return(0);
-// }
-
-
 int main()
 {
-
-	ft_malloc(1);
-	ft_malloc(2);
-	ft_malloc(3);
-	ft_malloc(4);
-
+	ft_malloc(24);
+	ft_malloc(24);
+	ft_malloc(24);
 }
